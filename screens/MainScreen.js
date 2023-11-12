@@ -1,15 +1,45 @@
-import { StyleSheet, View, Text, TextInput } from "react-native";
+import { StyleSheet, View, Text, TextInput, Alert } from "react-native";
 import CustomButton from '../components/CustomButton';
 import colorPallete from '../assets/ColorPallete';
+import { useState } from "react";
 
 
 export default function MainScreen() {
+    const [enteredNumber,setEnteredNumber]=useState('');
+
+    const handleInputChange = (input) =>{
+        setEnteredNumber(input)
+    }
+
+    const resetInput =()=>{
+        setEnteredNumber('')
+    }
+
+    const confirmInput=()=>{
+        const num=parseInt(enteredNumber);
+
+        if (isNaN(num) || num <= 0 || num > 99){
+            Alert.alert(
+                'Invalid Number',
+                'Number has to be between 1 and 99.',
+                [{text:'Okay',style:'destructive',onPress:resetInput}]
+            )
+            return;
+        }
+        console.log('success')
+    }
+
   return (
     <View style={styles.mainContainer}>
-        <TextInput style={styles.textInput} inputMode="numeric" maxLength={2}/>
+        <TextInput style={styles.textInput} 
+        inputMode="numeric" 
+        maxLength={2}
+        value={enteredNumber}
+        onChangeText={handleInputChange}
+        />
         <View style={styles.btnContainer}>
-            <CustomButton title={'Reset'} />
-            <CustomButton title={'Confirm'} />
+            <CustomButton title={'Reset'} onPress={resetInput}/>
+            <CustomButton title={'Confirm'} onPress={confirmInput}/>
         </View>
     </View>
   )
@@ -28,7 +58,7 @@ const styles =StyleSheet.create({
     textInput:{
         borderBottomColor:colorPallete.textColor,
         borderBottomWidth:2,
-        width:80,
+        width:50,
         color:colorPallete.textColor,
         fontSize:32,
         fontWeight:'bold',

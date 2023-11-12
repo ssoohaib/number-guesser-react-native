@@ -4,7 +4,7 @@ import colorPallete from '../assets/ColorPallete';
 export default function CustomButton(props) {
   return (
     <View style={styles.btnContainer}>
-      <Pressable onPress={({pressed})=>{pressed && console.log('lol')}}>
+      <Pressable onPress={props.onPress}>
           <Text style={styles.btnText}>{props.title}</Text>
       </Pressable>
     </View>
