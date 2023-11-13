@@ -14,18 +14,19 @@ export default function CustomButton(props) {
 const styles = StyleSheet.create({
   btnContainer:{
     backgroundColor: colorPallete.three,
-    paddingVertical:16,
-    paddingHorizontal:32,
     borderRadius:16,
     // width:130,
-    flex:1,
+    // flex:1,
     alignItems:'center',
     marginHorizontal:8,
-
+    marginVertical:4,
+    
   },
   btnText:{
     color:colorPallete.textColor,
     fontSize:16,
-  
+    paddingVertical:16,
+    paddingHorizontal:32,
+    
   }
 });

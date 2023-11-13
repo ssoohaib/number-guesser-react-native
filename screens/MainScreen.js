@@ -4,7 +4,7 @@ import colorPallete from '../assets/ColorPallete';
 import { useState } from "react";
 
 
-export default function MainScreen() {
+export default function MainScreen(props) {
     const [enteredNumber,setEnteredNumber]=useState('');
 
     const handleInputChange = (input) =>{
@@ -26,7 +26,7 @@ export default function MainScreen() {
             )
             return;
         }
-        console.log('success')
+        props.screenChange(num)
     }
 
   return (

@@ -3,4 +3,5 @@ export default colorPallete = {
     two:'#3A021E',
     three:'#70063B',
     textColor:'#EDEDED',
+    titleColor:'yellow'
 }
