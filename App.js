@@ -4,13 +4,31 @@ import GameScreen from './screens/GameScreen';
 import { LinearGradient } from 'expo-linear-gradient';
 import colorPallete from './assets/ColorPallete';
 import { useState } from 'react';
+import OverScreen from './screens/OverScreen';
 
 export default function App() {
 
-  const [screenNum,setScreenNum]=useState(1);
+  const [screenNum,setScreenNum]=useState();
+  const [isGameOver,setIsGameOver]=useState(false);
+  const [gameResult,setGameResult]=useState(0);
+  const [totalRounds,setTotalRounds]=useState(0);
+
+  const gameOverHandler=(result,totalRounds)=>{
+    setIsGameOver(true)
+    setTotalRounds(totalRounds)
+    // setScreenNum(undefined)
+  }
+
+  const restartGame = ()=>{
+    setScreenNum(undefined)
+    setIsGameOver(false)
+    setGameResult(0)
+    setTotalRounds(0)
+  }
 
   const screenHandler = (num)=>{
     setScreenNum(num)
+    setGameResult(num)
   }
 
   return (
@@ -23,8 +41,9 @@ export default function App() {
 
         {/* Screens */}
         <SafeAreaView> 
-          {!screenNum && <MainScreen screenChange={screenHandler} />}
-          {screenNum && <GameScreen userNum={screenNum}/>}
+          {!screenNum && !isGameOver && <MainScreen screenChange={screenHandler} />}
+          {screenNum && !isGameOver && <GameScreen userNum={screenNum} gameOver={gameOverHandler} />}
+          {isGameOver && <OverScreen totalRounds={totalRounds} result={gameResult} restartGame={restartGame}/>}
         </SafeAreaView>
       
       </ImageBackground>

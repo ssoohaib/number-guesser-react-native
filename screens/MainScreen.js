@@ -2,6 +2,7 @@ import { StyleSheet, View, Text, TextInput, Alert } from "react-native";
 import CustomButton from '../components/CustomButton';
 import colorPallete from '../assets/ColorPallete';
 import { useState } from "react";
+import Title from "../components/Title";
 
 
 export default function MainScreen(props) {
@@ -30,36 +31,55 @@ export default function MainScreen(props) {
     }
 
   return (
-    <View style={styles.mainContainer}>
-        <TextInput style={styles.textInput} 
-        inputMode="numeric" 
-        maxLength={2}
-        value={enteredNumber}
-        onChangeText={handleInputChange}
-        />
-        <View style={styles.btnContainer}>
-            <CustomButton title={'Reset'} onPress={resetInput}/>
-            <CustomButton title={'Confirm'} onPress={confirmInput}/>
+    <View style={styles.rootContainer}>
+        <Title title={"Game Guesser"} verticalPadding={8} color={colorPallete.titleColor}/>
+        <View style={styles.mainContainer}>
+            <Text style={styles.text}>Enter a number</Text>
+            <TextInput style={styles.textInput} 
+            inputMode="numeric" 
+            maxLength={2}
+            value={enteredNumber}
+            onChangeText={handleInputChange}
+            />
+            <View style={styles.btnContainer}>
+                <CustomButton title={'Reset'} onPress={resetInput}/>
+                <CustomButton title={'Confirm'} onPress={confirmInput}/>
+            </View>
         </View>
     </View>
   )
 }
 
 const styles =StyleSheet.create({
-    mainContainer:{
+    rootContainer:{
+        alignItems:'center',
+        flex:1,
+        width:'100%',
+
         // borderWidth:1,
         // borderColor:'red',
-        width:'90%',
-        backgroundColor:colorPallete.two,
+    },
+    text:{
+        fontSize:20,
+        color:colorPallete.textColor,
+        marginBottom:16,
+    },
+    mainContainer:{
+        // borderWidth:1,
+        marginTop:16,
+        borderColor:'red',
+        elevation:16,
         padding:32,
+        width:'90%',
+        backgroundColor:colorPallete.three,
         alignItems:'center',
         borderRadius:16
     },
     textInput:{
-        borderBottomColor:colorPallete.textColor,
+        borderBottomColor:colorPallete.titleColor,
         borderBottomWidth:2,
         width:50,
-        color:colorPallete.textColor,
+        color:colorPallete.titleColor,
         fontSize:32,
         fontWeight:'bold',
         textAlign:'center'

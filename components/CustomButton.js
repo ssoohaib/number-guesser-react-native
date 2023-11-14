@@ -1,11 +1,19 @@
 import { StyleSheet, Pressable, View, Text } from 'react-native'
+import { Ionicons } from '@expo/vector-icons';
 import colorPallete from '../assets/ColorPallete';
 
 export default function CustomButton(props) {
   return (
     <View style={styles.btnContainer}>
       <Pressable onPress={props.onPress}>
-          <Text style={styles.btnText}>{props.title}</Text>
+      
+          {
+            props.icon ? 
+            <Ionicons style={styles.iconBtn} name={props.icon} size={24} color="white" />
+            :
+            <Text style={styles.btnText}>{props.title}</Text>
+          }
+          
       </Pressable>
     </View>
   )
@@ -13,7 +21,7 @@ export default function CustomButton(props) {
 
 const styles = StyleSheet.create({
   btnContainer:{
-    backgroundColor: colorPallete.three,
+    backgroundColor: colorPallete.two,
     borderRadius:16,
     // width:130,
     // flex:1,
@@ -28,5 +36,9 @@ const styles = StyleSheet.create({
     paddingVertical:16,
     paddingHorizontal:32,
     
+  },
+  iconBtn:{
+    paddingVertical:16,
+    paddingHorizontal:32,
   }
 });
