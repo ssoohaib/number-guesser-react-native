@@ -27,6 +27,8 @@ export default function GameScreen(props) {
     useEffect(()=>{
         if(currentGuess==props.userNum){
             props.gameOver(currentGuess,totalRounds)
+            totalRounds=0
+            setRoundLogs([])
         }
     },[currentGuess])
 
@@ -122,6 +124,7 @@ const styles=StyleSheet.create({
         // borderWidth:1,
     },
     listContainer:{
+        flex:1,
         // flexDirection:'column-reverse'
     }
 })

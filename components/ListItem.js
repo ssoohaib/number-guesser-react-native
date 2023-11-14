@@ -13,7 +13,7 @@ export default function ListItem(props) {
 const styles = StyleSheet.create({
     container:{
         marginBottom:8,
-        paddingVertical:64,
+        paddingVertical:8,
         paddingHorizontal:16,
         backgroundColor:ColorPallete.titleColor,
         borderRadius:16,
